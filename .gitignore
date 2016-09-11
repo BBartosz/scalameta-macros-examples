@@ -1,0 +1,10 @@
+.idea/*
+project/project
+project/target
+target
+tmp
+macros/.idea/*
+macros/project/project
+macros/project/target
+macros/target
+macros/tmp
