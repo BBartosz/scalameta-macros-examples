@@ -9,9 +9,10 @@ class Mappable extends StaticAnnotation {
         template match {
           case template"{ ..$stats } with ..$ctorcalls { $param => ..$body }" => {
             val expr = paramss.flatten.map(p => q"${p.name.toString}").zip(paramss.flatten.map{ p =>
-                /*paramname and Term.Name(...) in theory has the same structure, but there is compilation
+                /*p.name and Term.Name(...) in theory has the same structure, but there is compilation
                  error when trying to return p.name, not sure why, probably shouldnt use show[Structure] to compare this
-                 code */
+                 code, and moreover according to quasiquotes docs: anonymous names can't be constructed,
+                 only extracted from param so this is why have to write this way*/
 
 //                println(p.name.show[Structure] == Term.Name(p.name.toString).show[Structure])
                 Term.Name(p.name.toString)

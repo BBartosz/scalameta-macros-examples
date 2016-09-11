@@ -17,6 +17,6 @@ lazy val macros = (project in file("macros"))
   .settings(
     libraryDependencies += "org.scalameta" %% "scalameta" % "1.0.0",
     /*not sure why I have to add scala-reflect, but without it ive got compilation error.
-    I think in scalameta 1.1.0-Snapshot with paradise 3.0.0-M4 its fixed */
+    In scalameta 1.1.0-Snapshot with paradise 3.0.0-M4 its fixed, check branch 'snapshots' */
     libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.8"
   )
