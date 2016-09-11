@@ -22,7 +22,7 @@ object Main{
     c > a+b
   }
 
-  val newCarMap = new Car("Silver", "Ford", 1998, "John Doe").toMap
+  val newCarMap = Car("Silver", "Ford", 1998, "John Doe").toMap
 
   println(newCarMap)
 }
