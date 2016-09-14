@@ -3,7 +3,7 @@ import scala.meta._
 
 @compileTimeOnly("@Mappable not expanded")
 class Mappable extends StaticAnnotation {
-  inline def apply(defn: Defn) = meta {
+  inline def apply(defn: Any): Any = meta {
     defn match {
       case q"..$mods class $tname[..$tparams] (...$paramss) extends $template" =>
         template match {
