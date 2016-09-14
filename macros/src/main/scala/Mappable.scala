@@ -11,9 +11,6 @@ class Mappable extends StaticAnnotation {
             val expr = paramss.flatten.map(p => q"${p.name.toString}").zip(paramss.flatten.map{
               case param"..$mods $paramname: $atpeopt = $expropt" => paramname
             }).map{case (q"$paramName", paramTree) => {
-              /*why we need to write this way? I think answer is in quasiqutes docs:
-              anonymous names can't be constructed, only extracted from param. This is why we need to cheat,
-              with this Term.Name(...)  */
               q"${Term.Name(paramName.toString)} -> ${Term.Name(paramTree.toString)}"
             }}
 
