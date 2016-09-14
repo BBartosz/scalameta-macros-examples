@@ -12,11 +12,14 @@ class Mappable extends StaticAnnotation {
               case param"..$mods $paramname: $atpeopt = $expropt" => paramname
             }).map{case (q"$paramName", paramTree) => {
               /*why we need to write this way? I think answer is in quasiqutes docs:
-              anonymous names can't be constructed, only extracted from param. This is why we need to cheat.*/
-              q"(${Term.Name(paramName.toString)}, ${Term.Name(paramTree.toString)})"
+              anonymous names can't be constructed, only extracted from param. This is why we need to cheat,
+              with this Term.Name(...)  */
+              q"${Term.Name(paramName.toString)} -> ${Term.Name(paramTree.toString)}"
             }}
 
-            val newBody = body :+ q"""def toMap: Map[String, Any] = Seq(..$expr).toMap"""
+            val resultMap = q"Map(..$expr)"
+
+            val newBody = body :+ q"""def toMap: Map[String, Any] = $resultMap"""
             val newTemplate = template"{ ..$stats } with ..$ctorcalls { $param => ..$newBody }"
 
             q"..$mods class $tname[..$tparams] (...$paramss) extends $newTemplate"
