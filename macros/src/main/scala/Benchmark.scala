@@ -3,7 +3,7 @@ import scala.meta._
 
 @compileTimeOnly("@Benchmark not expanded")
 class Benchmark extends StaticAnnotation {
-  inline def apply(defn: Defn) = meta {
+  inline def apply(defn: Any): Any = meta {
     defn match {
       case q"..$mods def $name[..$tparams](...$paramss): $tpeopt = $expr" =>
         q"""

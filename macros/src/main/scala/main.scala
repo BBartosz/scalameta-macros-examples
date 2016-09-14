@@ -3,7 +3,7 @@ import scala.meta._
 
 @compileTimeOnly("@main not expanded")
 class main extends scala.annotation.StaticAnnotation {
-  inline def apply(defn: Defn) = meta {
+  inline def apply(defn: Any): Any = meta {
     defn match {
       case q"..$mods object $name extends $template" => template match {
         case template"{ ..$stats1 } with ..$ctorcalls { $param => ..$stats2 }" =>
