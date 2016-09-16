@@ -1,6 +1,19 @@
 # scalameta-macros-examples
 Examples from my repo https://github.com/BBartosz/scala-macros-examples ported to new inline macros in scalameta
 
+@main example:
+```scala
+@main
+object Boot {
+ 
+}
+```
+expands to:
+```scala
+object Boot extends App {
+
+}
+```
 
 @Benchmark example:
 
@@ -45,20 +58,6 @@ case class Car(color: String, model: String, year: Int, owner: String){
     "playing"
   }
   
-  def toMap: Map[String, Ant] = Map("color" -> color, "model" -> model, "year" -> year, "owner" -> owner)
-}
-```
-
-@main example:
-```scala
-@main
-object Boot {
- 
-}
-```
-expands to:
-```scala
-object Boot extends App {
-
+  def toMap: Map[String, Any] = Map("color" -> color, "model" -> model, "year" -> year, "owner" -> owner)
 }
 ```
