@@ -6,7 +6,7 @@ import scala.meta._
 class main extends scala.annotation.StaticAnnotation {
   inline def apply(defn: Any): Any = meta {
     def abortIfObjectAlreadyExtendsApp(ctorcalls: scala.collection.immutable.Seq[Call], objectName: Term) = {
-      val extendsAppAlready = ctorcalls.map(_.show[Structure]).contains(ctor"App()".show[Structure])
+      val extendsAppAlready = ctorcalls.map(_.structure).contains(ctor"App()".structure)
       if (extendsAppAlready){
         abort(s"$objectName already extends App")
       }
