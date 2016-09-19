@@ -1,4 +1,6 @@
 # scalameta-macros-examples
+http://www.bbartosz.com/blog/2016/09/16/new-scalameta-inline-macros-examples/
+
 Examples from my repo https://github.com/BBartosz/scala-macros-examples ported to new inline macros in scalameta
 
 @main example:
