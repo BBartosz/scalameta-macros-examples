@@ -15,7 +15,7 @@ object Main{
   }
 
 //  issue: macro annotation now cannot parse throwing exception directly so wrapped this
-//  into method.
+//  into method. https://github.com/scalameta/paradise/issues/43
   @RetryOnFailure(20)
   def failMethod[String](): Unit = {
     val random = Random.nextInt(10)
