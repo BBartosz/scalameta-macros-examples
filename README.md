@@ -10,7 +10,9 @@ object Boot {
  
 }
 ```
+
 expands to:
+
 ```scala
 object Boot extends App {
 
@@ -39,6 +41,37 @@ expands to:
     val end = System.nanoTime()
     println("testMethod elapsed time: " + (end - start) + "ns")
     result
+  }
+```
+
+@RetryOnFailure(n: Int) example:
+
+```scala
+  @RetryOnFailure(20)
+  def failMethod[String](): Unit = {
+    val random = Random.nextInt(10)
+    println(s"evaluating random= $random")
+    utils.methodThrowingException(random)
+  }
+```
+
+expands to:
+
+```scala
+  def failMethod[String](): Unit = {
+    import scala.util.Try
+
+    for( a <- 1 to 20){
+      val res = Try{
+        val random = Random.nextInt(10)
+        println(s"evaluating random= $random")
+        utils.methodThrowingException(random)
+      }
+      if(res.isSuccess){
+        return res.get
+      }
+    }
+    throw new Exception("Method fails after 20 repeats")
   }
 ```
 
