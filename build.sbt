@@ -4,7 +4,7 @@ lazy val commonSettings = Seq(
   version := "1.0",
   scalaVersion := "2.11.10",
   scalacOptions += "-Xplugin-require:macroparadise",
-  resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
+  resolvers += Resolver.bintrayIvyRepo("scalameta", "maven"),
   addCompilerPlugin("org.scalameta" % "paradise" % "3.0.0-M8" cross CrossVersion.full)
 )
 
